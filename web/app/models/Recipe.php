@@ -35,6 +35,10 @@
 			             ->orWhere( 'ing_id_4', '=', $ingredient->id );
 		}
 
+		public function scopeWhereHasDiscipline($query, $discipline) {
+		    return $query->whereRaw('((disciplines & ?) = ?)', [$discipline, $discipline]);
+        }
+
 		public function scopeWithIngredient( $query ) {
 			return $query->with('ingredient1', 'ingredient2', 'ingredient3', 'ingredient4');
 		}
